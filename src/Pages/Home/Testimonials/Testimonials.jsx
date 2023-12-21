@@ -1,21 +1,23 @@
+import { useEffect } from 'react';
 import { FaQuoteRight } from 'react-icons/fa';
 import Slider from 'react-slick';
 import AOS from 'aos';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import 'aos/dist/aos.css'; // Import the AOS CSS
 import "./Testimonials.css";
 import bankerImg from "../../../assets/images/others/banker.jpg"
 import corporateImg from "../../../assets/images/others/corporate.jpg"
-import developerImg from "../../../assets/images/others/developer.jpg"
-import { useEffect } from 'react';
+import developerImg from "../../../assets/images/others/developer.jpg";
 
 const Testimonials = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Specify the animation duration
-      easing: 'ease-in-out', // Specify the easing function
+      duration: 2000, // Specify the animation duration
+      easing: 'ease-out-cubic', // Specify the easing function
     });
   }, []);
+
   const settings = {
     dots: false,
     infinite: true,
@@ -54,7 +56,7 @@ const Testimonials = () => {
   };
 
   return (
-    <div className="px-[20px] md:px-[50px] lg:px-[100px] py-12 bg-gradient-to-r from-[#f72585] via-[#7209b7] to-[#560bad]">
+    <div  className="px-[20px] md:px-[50px] lg:px-[100px] py-12 bg-gradient-to-r from-[#f72585] via-[#7209b7] to-[#560bad]">
       <div className="text-center md:w-1/2 mx-auto">
         <p className="text-xl text-yellow-400 font-bold pb-1">whom this can be of benefit</p>
         <h1 className="text-[45px] text-yellow-400 font-bold">Different Types of Users</h1>
@@ -62,10 +64,9 @@ const Testimonials = () => {
           Discover how people from different backgrounds benefit from our platform.
         </p>
       </div>
-      <div>
+      <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
         <Slider className="my-12 px-8" {...settings}>
-          <div data-aos="fade-up" data-aos-easing="ease-out-cubic"
-     data-aos-duration="2000" className="z-10 h-[400px] lg:h-[300px] bg-black bg-opacity-50 card border-2 border-yellow-400 rounded-lg p-4 lg:p-12 space-y-4 mx-3 max-w-[90%]">
+          <div className="z-10 h-[400px] lg:h-[300px] bg-black bg-opacity-50 card border-2 border-yellow-400 rounded-lg p-4 lg:p-12 space-y-4 mx-3 max-w-[90%]">
             <div className="flex justify-between items-center">
               <div className="flex flex-col lg:flex-row gap-3 items-center">
                 <img className=" rounded-full w-[150px] lg:w-[200px] h-[150px] lg:h-[200px] border-2 border-yellow-400 p-1" src={developerImg} alt="" />
@@ -83,7 +84,7 @@ const Testimonials = () => {
             </div>
           </div>
 
-          <div data-aos="fade-up" className="z-10 h-[400px] lg:h-[300px] bg-black bg-opacity-50 card border-2 border-yellow-400 rounded-lg p-4 lg:p-12 space-y-4 mx-3 max-w-[90%]">
+          <div className="z-10 h-[400px] lg:h-[300px] bg-black bg-opacity-50 card border-2 border-yellow-400 rounded-lg p-4 lg:p-12 space-y-4 mx-3 max-w-[90%]">
             <div className="flex justify-between items-center">
               <div className="flex flex-col lg:flex-row gap-3 items-center">
                 <img className="rounded-full w-[150px] lg:w-[200px] h-[150px] lg:h-[200px] border-2 border-yellow-400 p-1" src={corporateImg} alt="" />
@@ -92,7 +93,6 @@ const Testimonials = () => {
                   <div className="text-md text-gray-500">
                     <p>
                       Corporate professionals find our platform to be a valuable asset for enhancing productivity and collaboration.
-                      
                     </p>
                   </div>
                 </div>
@@ -101,7 +101,7 @@ const Testimonials = () => {
             </div>
           </div>
 
-          <div data-aos="fade-up" className="z-10 h-[400px] lg:h-[300px] bg-black bg-opacity-50 card border-2 border-yellow-400 rounded-lg p-4 lg:p-12 space-y-4 mx-3 max-w-[90%]">
+          <div className="z-10 h-[400px] lg:h-[300px] bg-black bg-opacity-50 card border-2 border-yellow-400 rounded-lg p-4 lg:p-12 space-y-4 mx-3 max-w-[90%]">
             <div className="flex justify-between items-center">
               <div className="flex flex-col lg:flex-row gap-3 items-center">
                 <img className=" rounded-full w-[150px] lg:w-[200px] h-[150px] lg:h-[200px] border-2 border-yellow-400 p-1" src={bankerImg} alt="" />
@@ -109,8 +109,7 @@ const Testimonials = () => {
                   <h1 className="text-[25px] text-yellow-400 font-bold">Bankers</h1>
                   <div className="text-md text-gray-500">
                     <p>
-                      Bankers trust our platform for its secure and efficient financial management tools.
-                      From transaction tracking to analytics
+                      Bankers trust our platform for its secure and efficient financial management tools. From transaction tracking to analytics.
                     </p>
                   </div>
                 </div>
