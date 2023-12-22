@@ -1,87 +1,85 @@
 // import PropTypes from 'prop-types';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaFacebookF } from 'react-icons/fa';
 import { BsGoogle, BsGithub } from 'react-icons/bs';
 import authenticationImg from "../../assets/images/others/login.png"
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
-// import { AuthContext } from '../../Providers/AuthProvider';
-// import Swal from 'sweetalert2';
-// import "./Login.css"
+import Swal from 'sweetalert2';
+import { AuthContext } from '../../Providers/AuthProvider';
+
 const Login = () => {
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // const from = location.state?.from?.pathname || "/"
-  // const {signInUser, googleSignIn} = useContext(AuthContext);
+  const navigate = useNavigate();
+  const {signInUser, googleSignIn} = useContext(AuthContext);
   const [errors, setErrors] = useState(null)
-  // const [loading, setLoading] = useState(false)
-    // const [disable, setDisable] = useState(true);
+  const [loading, setLoading] = useState(false)
+    const [disable, setDisable] = useState(true);
 
     useEffect(()=>{
         loadCaptchaEnginge(6);     
     },[])
 
-    // const handleGoogleSignIn =()=>{
-    //   googleSignIn()
-    //   .then(result => {
-    //     const loggedUser = result.user;
-    //     console.log(loggedUser);
-    //     Swal.fire({
-    //       title: 'Logged In!',
-    //       text: `${result.user?.displayName ? result.user.displayName : 'User'} Logged In successfully!`,
-    //       imageUrl: result.user?.photoURL ? result.user.photoURL || result.user.photoURL : 'https://i.ibb.co/qnT81gF/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg',
-    //       imageWidth: 200,
-    //       imageHeight: 200,
-    //       imageAlt: "Custom image",
-    //       confirmButtonText: 'Ok!',
-    //     })
-    //     navigate(from , {replace: true});   
-    //     })
-    // }
+    const handleGoogleSignIn =()=>{
+      googleSignIn()
+      .then(result => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        Swal.fire({
+          title: 'Logged In!',
+          text: `${result.user?.displayName ? result.user.displayName : 'User'} Logged In successfully!`,
+          imageUrl: result.user?.photoURL ? result.user.photoURL || result.user.photoURL : 'https://i.ibb.co/qnT81gF/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg',
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: "Custom image",
+          confirmButtonText: 'Ok!',
+        })
+        navigate("/dashboard/CreateNewTask");   
+        })
+    }
 
-    // const handleLogin = e =>{
-    //     e.preventDefault();
-    //     setErrors("")
-    //     setLoading(true);
-    //     const form = e.target;
-    //     const email = form.email.value;
-    //     const password = form.password.value;
-    //     console.log(email, password);
+    const handleLogin = e =>{
+        e.preventDefault();
+        setErrors("")
+        setLoading(true);
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+        console.log(email, password);
 
-    //     signInUser(email, password)
-    //     .then(result=>{
-    //       console.log("Logged in successfully!", result.user);
-    //       Swal.fire({
-    //         title: 'Logged In!',
-    //         text: `${result.user?.displayName ? result.user.displayName : 'User'} logged in successfully!`,
-    //         imageUrl: result.user?.photoURL ? result.user.photoURL || result.user.photoURL : 'https://i.ibb.co/qnT81gF/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg',
-    //         imageWidth: 200,
-    //         imageHeight: 200,
-    //         imageAlt: "Custom image",
-    //         confirmButtonText: 'Ok!',
-    //       })
-    //       setLoading(false)
-    //       navigate(from , {replace: true});
-    //     })
-    //     .catch(error=>{
-    //       console.error(error.message);
-    //       setLoading(false);
-    //       setErrors(error.message)
-    //     })
+        signInUser(email, password)
+        .then(result=>{
+          console.log("Logged in successfully!", result.user);
+          Swal.fire({
+            title: 'Logged In!',
+            text: `${result.user?.displayName ? result.user.displayName : 'User'} logged in successfully!`,
+            imageUrl: result.user?.photoURL ? result.user.photoURL || result.user.photoURL : 'https://i.ibb.co/qnT81gF/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg',
+            imageWidth: 200,
+            imageHeight: 200,
+            imageAlt: "Custom image",
+            confirmButtonText: 'Ok!',
+          })
+          setLoading(false)
+          navigate('/dashboard/CreateNewTask')
+        })
+        .catch(error=>{
+          console.error(error.message);
+          setLoading(false);
+          setErrors(error.message)
+        })
        
-    // }
+    }
 
     const handleValidateCaptcha = (e) =>{
       setErrors("")
-      // setDisable(true);
+      setDisable(true);
         const user_captcha_value = e.target.value;
         console.log(user_captcha_value);
         if(validateCaptcha(user_captcha_value)){
-            // setDisable(false);
+            setDisable(false);
         }else{
           setErrors("Invalid Captcha entry!")
-            // setDisable(true);
+            setDisable(true);
         }
     }
 
@@ -96,8 +94,8 @@ const Login = () => {
      <img src={authenticationImg} className='lg:w-[80%] mx-auto' alt="" />
     </div>
     <div className="card flex-shrink-0 w-full max-w-sm ">
-      {/* <form onSubmit={handleLogin} className="card-body text-yellow-300"> */}
-      <form className="card-body text-yellow-300">
+      <form onSubmit={handleLogin} className="card-body text-yellow-300">
+      {/* <form className="card-body text-yellow-300"> */}
         <h1 className="text-yellow-300 font-bold text-3xl mx-auto">LOGIN</h1>
         <div className="form-control">
           <label className="label">
@@ -122,8 +120,8 @@ const Login = () => {
         <div className="form-control mt-0">
           {/* disabled={disable} */}
           {errors && <span className='text-red-500'>{errors}</span>}
-          {/* <input type="submit" disabled={disable} value={loading ? "Signing in..." : "Sign In"} className="btn bg-yellow-300 bg-opacity-70 text-white"></input> */}
-          <input type="submit" value="Sign In" className="btn bg-yellow-300 border-none text-xl font-semibold text-black"></input>
+          <input type="submit" disabled={disable} value={loading ? "Signing in..." : "Sign In"} className="btn bg-yellow-300 bg-opacity-70 text-white"></input>
+          {/* <input type="submit" value="Sign In" className="btn bg-yellow-300 border-none text-xl font-semibold text-black"></input> */}
         </div>
         <p className="text-yellow-300 mx-auto">New here? <Link to="/register"><span className="font-bold">Create a new account</span></Link></p>
         <div className="flex flex-col items-center gap-3 mx-auto">
@@ -132,8 +130,8 @@ const Login = () => {
                 <div className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200">
                     <FaFacebookF/>
                 </div>
-                {/* <div onClick={handleGoogleSignIn} className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200"> */}
-                <div className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200">
+                <div onClick={handleGoogleSignIn} className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200">
+                {/* <div className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200"> */}
                     <BsGoogle/>
                 </div>
                 <div className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200">

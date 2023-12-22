@@ -56,10 +56,10 @@ const Testimonials = () => {
   };
 
   return (
-    <div  className="px-[20px] md:px-[50px] lg:px-[100px] py-12 bg-gradient-to-r from-[#f72585] via-[#7209b7] to-[#560bad]">
+    <div  className="px-[90px] py-12 bg-gradient-to-r from-[#f72585] via-[#7209b7] to-[#560bad]">
       <div className="text-center md:w-1/2 mx-auto">
         <p className="text-xl text-yellow-400 font-bold pb-1">whom this can be of benefit</p>
-        <h1 className="text-[45px] text-yellow-400 font-bold">Different Types of Users</h1>
+        <h1 className="text-3xl lg:text-[45px] text-yellow-400 font-bold">Different Types of Users</h1>
         <p className="text-[16px] text-white font-semibold pt-4">
           Discover how people from different backgrounds benefit from our platform.
         </p>

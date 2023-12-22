@@ -1,138 +1,138 @@
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { FaFacebookF } from 'react-icons/fa';
 import { BsGoogle, BsGithub } from 'react-icons/bs';
 import { Helmet } from 'react-helmet-async';
-// import { useContext, useState } from 'react';
-// import { AuthContext } from '../../Providers/AuthProvider';
-// import Swal from 'sweetalert2';
-// import useAxiosPublic from '../../Hooks/useAxiosPublic';
 import authenticationImg from "../../assets/images/others/signup.png"
+import { useContext, useState } from 'react';
+import { AuthContext } from '../../Providers/AuthProvider';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 
 const SignUp = () => {
-  // const axiosPublic = useAxiosPublic();
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(null)
-  // const navigate = useNavigate();
-  const { register, formState: { errors } } = useForm();
-  // const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
-  // const { createUser, updateUser, logOut, googleSignIn } = useContext(AuthContext);
+  const axiosPublic = useAxiosPublic();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null)
+  const navigate = useNavigate();
+  // const { register, formState: { errors } } = useForm();
+  const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+  const { createUser, updateUser, logOut, googleSignIn } = useContext(AuthContext);
 
-  // const handleGoogleSignIn = () => {
-  //   setError(null);
-  //   googleSignIn()
-  //   .then((result) => {
-  //     const loggedUser = result.user;
-  //     console.log(loggedUser);
-  //     const userData = {
-  //       name: result.user?.displayName,
-  //       email: result.user?.email,
-  //       photo: result.user?.photoURL,
-  //       role: 'user',
-  //     };
-  //     axiosPublic.post('/users', userData)
-  //     .then((res) => {
-  //       navigate('/');
-  //       if (res.data.insertedId) {
-  //         console.log('User info added to the database!');
-  //         Swal.fire({
-  //           title: 'Profile Created!',
-  //           text: `${result.user?.displayName ? result.user.displayName : 'User'} Profile created successfully!`,
-  //           imageUrl: result.user?.photoURL
-  //             ? result.user.photoURL || result.user.photoURL
-  //             : 'https://i.ibb.co/qnT81gF/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg',
-  //           imageWidth: 200,
-  //           imageHeight: 200,
-  //           imageAlt: 'Custom image',
-  //           confirmButtonText: 'Ok!',
-  //         });
-  //         navigate('/');
-  //       }
-  //     })
-  //     .catch(error=>{
-  //       console.error(error.message);
-  //       setError(error.message);
-  //       Swal.fire({
-  //         title: "User Not Updated!",
-  //         text: error.message,
-  //         icon: "question"
-  //       });
-  //     })
-  //   })
-  //   .catch(error=>{
-  //     console.error(error.message);
-  //     setError(error.message);
-  //     Swal.fire({
-  //       title: "User Not Updated!",
-  //       text: error.message,
-  //       icon: "question"
-  //     });
-  //   })
-  // };
+  const handleGoogleSignIn = () => {
+    setError(null);
+    googleSignIn()
+    .then((result) => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+      const userData = {
+        name: result.user?.displayName,
+        email: result.user?.email,
+        photo: result.user?.photoURL,
+        role: 'user',
+      };
+      axiosPublic.post('/users', userData)
+      .then((res) => {
+        navigate('/login');
+        if (res.data.insertedId) {
+          console.log('User info added to the database!');
+          Swal.fire({
+            title: 'Profile Created!',
+            text: `${result.user?.displayName ? result.user.displayName : 'User'} Profile created successfully!`,
+            imageUrl: result.user?.photoURL
+              ? result.user.photoURL || result.user.photoURL
+              : 'https://i.ibb.co/qnT81gF/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg',
+            imageWidth: 200,
+            imageHeight: 200,
+            imageAlt: 'Custom image',
+            confirmButtonText: 'Ok!',
+          });
+          navigate('/');
+        }
+      })
+      .catch(error=>{
+        console.error(error.message);
+        setError(error.message);
+        Swal.fire({
+          title: "User Not Updated!",
+          text: error.message,
+          icon: "question"
+        });
+      })
+    })
+    .catch(error=>{
+      console.error(error.message);
+      setError(error.message);
+      Swal.fire({
+        title: "User Not Updated!",
+        text: error.message,
+        icon: "question"
+      });
+    })
+  };
 
-  // const onSubmit = (data) => {
-  //   setError(null);
-  //   setLoading(true);
-  //   console.log(data.name, data.photo);
-  //   createUser(data.email, data.password)
-  //     .then((result) => {
-  //       const loggedUser = result.user;
-  //       console.log(loggedUser);
-  //       updateUser(data.name, data.photo)
-  //         .then(() => {
-  //           setLoading(false);
-  //           console.log('Profile Updated');
-  //           const userData = {
-  //             name: data.name,
-  //             email: data.email,
-  //             photo: data.photo,
-  //             role: 'user',
-  //           };
-  //           axiosPublic.post('/users', userData).then((res) => {
-  //             if (res.data.insertedId) {
-  //               console.log('User info added to the database!');
-  //               Swal.fire({
-  //                 title: 'Profile Created!',
-  //                 text: `${result.user?.displayName ? result.user.displayName : 'User'} Profile created successfully!`,
-  //                 imageUrl: result.user?.photoURL
-  //                   ? result.user.photoURL || result.user.photoURL
-  //                   : 'https://i.ibb.co/qnT81gF/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg',
-  //                 imageWidth: 200,
-  //                 imageHeight: 200,
-  //                 imageAlt: 'Custom image',
-  //                 confirmButtonText: 'Ok!',
-  //               });
-  //               reset();
-  //               logOut()
-  //                 .then(() => {
-  //                   console.log('Logged Out Successfully!');
-  //                   setLoading(false);
-  //                   navigate('/login');
-  //                 })
-  //                 .catch((error) => {
-  //                   console.error(error.message);
-  //                   setError(error.message);
-  //                   setLoading(false);
-  //                 });
-  //             }
-  //           });
-  //         })
-  //         .catch((error) => {
-  //           console.error(error.message);
-  //           setError(error.message);
-  //           setLoading(false);
-  //         });
-  //     })
-  //     .catch((error) => {
-  //       console.error(error.message);
-  //       setError(error.message);
-  //       setLoading(false);
-  //     });
-  // };
+  const onSubmit = (data) => {
+    setError(null);
+    setLoading(true);
+    console.log(data.name, data.photo);
+    createUser(data.email, data.password)
+      .then((result) => {
+        const loggedUser = result.user;
+        console.log(loggedUser);
+        updateUser(data.name, data.photo)
+          .then(() => {
+            setLoading(false);
+            console.log('Profile Updated');
+            const userData = {
+              name: data.name,
+              email: data.email,
+              photo: data.photo,
+              role: 'user',
+            };
+            axiosPublic.post('/users', userData).then((res) => {
+              if (res.data.insertedId) {
+                console.log('User info added to the database!');
+                Swal.fire({
+                  title: 'Profile Created!',
+                  text: `${result.user?.displayName ? result.user.displayName : 'User'} Profile created successfully!`,
+                  imageUrl: result.user?.photoURL
+                    ? result.user.photoURL || result.user.photoURL
+                    : 'https://i.ibb.co/qnT81gF/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg',
+                  imageWidth: 200,
+                  imageHeight: 200,
+                  imageAlt: 'Custom image',
+                  confirmButtonText: 'Ok!',
+                });
+                reset();
+                logOut()
+                  .then(() => {
+                    console.log('Logged Out Successfully!');
+                    setLoading(false);
+                    navigate('/login');
+                  })
+                  .catch((error) => {
+                    console.error(error.message);
+                    setError(error.message);
+                    setLoading(false);
+                  });
+              }
+            });
+          })
+          .catch((error) => {
+            console.error(error.message);
+            setError(error.message);
+            setLoading(false);
+          });
+      })
+      .catch((error) => {
+        console.error(error.message);
+        setError(error.message);
+        setLoading(false);
+      });
+  };
 
-  // console.log(watch('example')); // watch input value by passing the name of it
+  console.log(watch('example')); // watch input value by passing the name of it
 
   return (
     <>
@@ -145,8 +145,8 @@ const SignUp = () => {
             <img src={authenticationImg} className='lg:w-[80%] mx-auto' alt="" />
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm ">
-            {/* <form onSubmit={handleSubmit(onSubmit)} className="card-body"> */}
-            <form className="card-body">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+            {/* <form className="card-body"> */}
               <h1 className="text-yellow-300 font-bold text-3xl mx-auto">SignUp</h1>
               <div className="form-control">
                 <label className="label">
@@ -223,12 +223,11 @@ const SignUp = () => {
                   </span>
                 )}
               </div>
-              {/* {error && <span className='text-red-500'>{error}</span>} */}
+              {error && <span className='text-red-500'>{error}</span>}
               <div className="form-control mt-6">
                 <input
                   type="submit"
-                  // value={loading ? 'Loading...' : 'Sign Up'}
-                  value='Sign Up'
+                  value={loading ? 'Loading...' : 'Sign Up'}
                   className="btn bg-yellow-300 border-none text-black"
                 ></input>
               </div>
@@ -241,8 +240,8 @@ const SignUp = () => {
                   <div className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200">
                     <FaFacebookF />
                   </div>
-                  {/* <div onClick={handleGoogleSignIn} className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200"> */}
-                  <div  className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200">
+                  <div onClick={handleGoogleSignIn} className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200">
+                  {/* <div  className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200"> */}
                     <BsGoogle />
                   </div>
                   <div className="rounded-full p-2 border-2 border-yellow-300 hover:border-yellow-300 text-yellow-300 hover:text-yellow-300 duration-200">

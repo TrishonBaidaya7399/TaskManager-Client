@@ -1,22 +1,20 @@
 import PropTypes from "prop-types";
-// import cartImg from "../../../assets/icon/shopping-cart.png";
-import { FiLogIn } from "react-icons/fi";
+import { FiLogIn, FiLogOut } from "react-icons/fi";
 import { Link, NavLink } from "react-router-dom";
 import { BsSunFill, BsFillMoonStarsFill } from "react-icons/bs";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { RxCross2 } from "react-icons/rx";
-import { useEffect, useState } from "react";
-// import avatar from "../../../assets/others/profile.png";
+import { useContext, useEffect, useState } from "react";
 import logo from "../../../src/assets/images/logo/logo.png";
-// import { AuthContext } from "../../../Providers/AuthProvider";
-// import Swal from "sweetalert2";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../Providers/AuthProvider";
 
 
 const Navbar = () => {
   const [darkMode, setDarkMode] = useState(false); //#243447
   const [open, setOpen] = useState(false);
-//   const [loading, setLoading] = useState(false);
-//   const { logOut, user } = useContext(AuthContext);
+  const [loading, setLoading] = useState(false);
+  const { logOut, user } = useContext(AuthContext);
 
   useEffect(() => {
     const body = document.querySelector("body");
@@ -47,40 +45,13 @@ const Navbar = () => {
       >
         <li>CONTACT US</li>
       </NavLink>
-      {/* {user 
-      ? 
-      <>
       <NavLink
         className={({ isActive }) =>
           isActive
             ? "text-yellow-400 border-b-[3px] pb-1 border-[transparent] "
             : "text-white border-b-[3px] pb-1 border-[transparent] hover:border-b-[3px] hover:border-yellow-400 duration-300"
         }
-        to="/dashboard/adminHome"
-      >
-        <li>DASHBOARD</li>
-      </NavLink>
-      :
-      <NavLink
-        className={({ isActive }) =>
-          isActive
-            ? "text-yellow-400 border-b-[3px] pb-1 border-[transparent] "
-            : "text-white border-b-[3px] pb-1 border-[transparent] hover:border-b-[3px] hover:border-yellow-400 duration-300"
-        }
-        to="/dashboard/userHome"
-      >
-        <li>DASHBOARD</li>
-      </NavLink> 
-      </>
-      : ""
-    } */}
-      <NavLink
-        className={({ isActive }) =>
-          isActive
-            ? "text-yellow-400 border-b-[3px] pb-1 border-[transparent] "
-            : "text-white border-b-[3px] pb-1 border-[transparent] hover:border-b-[3px] hover:border-yellow-400 duration-300"
-        }
-        to="/menu"
+        to="/dashboard/CreateNewTask"
       >
         <li>DASHBOARD</li>
       </NavLink>
@@ -88,31 +59,31 @@ const Navbar = () => {
   );
 
   // Logout
-//   const handleLogOut = () => {
-//     setLoading(true);
-    // logOut()
-    //   .then(() => {
-    //     console.log("Logged Out Successfully!");
-    //     setLoading(false);
-    //     Swal.fire({
-    //       title: "Logged out!",
-    //       text: `${
-    //         user?.displayName ? user.displayName : "User"
-    //       } logged out successfully!`,
-    //       imageUrl: user?.photoURL
-    //         ? user.photoURL || user.photoURL
-    //         : "https://i.ibb.co/qnT81gF/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg",
-    //       imageWidth: 200,
-    //       imageHeight: 200,
-    //       imageAlt: "Custom image",
-    //       confirmButtonText: "Ok!",
-    //     });
-    //   })
-    //   .catch((error) => {
-    //     console.error(error.message);
-    //     setLoading(false);
-    //   });
-//   };
+  const handleLogOut = () => {
+    setLoading(true);
+    logOut()
+      .then(() => {
+        console.log("Logged Out Successfully!");
+        setLoading(false);
+        Swal.fire({
+          title: "Logged out!",
+          text: `${
+            user?.displayName ? user.displayName : "User"
+          } logged out successfully!`,
+          imageUrl: user?.photoURL
+            ? user.photoURL || user.photoURL
+            : "https://i.ibb.co/qnT81gF/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg",
+          imageWidth: 200,
+          imageHeight: 200,
+          imageAlt: "Custom image",
+          confirmButtonText: "Ok!",
+        });
+      })
+      .catch((error) => {
+        console.error(error.message);
+        setLoading(false);
+      });
+  };
 
   return (
     <div className="navbar bg-black fixed z-20 bg-opacity-40 drop-shadow-lg px-2 md:px-8 lg:px-12 flex justify-between py-2 md:py-4">
@@ -125,12 +96,12 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="flex gap-8">
+      <div className="flex gap-8 items-center">
         <ul className="hidden lg:block menu menu-horizontal px-1">
           {navItems}
         </ul>
 
-        <label className="swap swap-rotate">
+        <label className="swap swap-rotate hidden">
           <input type="checkbox" />
           {/* sun icon */}
           <BsSunFill
@@ -143,22 +114,30 @@ const Navbar = () => {
             className=" swap-off fill-current text-yellow-400 text-2xl md:text-3xl"
           />
         </label>
+        <div>
+        {user
+          ?
+          <FiLogOut onClick={handleLogOut} className="text-3xl text-yellow-300"/>
+          :
+          <Link to="/login">
+            <FiLogIn  className="text-3xl text-yellow-300"/>
+          </Link>
+
+          }
+        </div>
         <div className="dropdown dropdown-end">
           <label className="swap swap-rotate lg:hidden">
             <input type="checkbox" />
             <GiHamburgerMenu
               onClick={() => setOpen(!open)}
-              className="swap-off text-[25px] md:text-4xl text-[#D1A054B2] bg-[transparent] "
+              className="swap-off text-3xl md:text-4xl text-yellow-400 bg-[transparent] "
             />
             <RxCross2
               onClick={() => setOpen(!open)}
-              className="swap-on text-[25px] md:text-4xl text-[#D1A054B2] bg-[transparent] "
+              className="swap-on text-3xl md:text-4xl text-yellow-400 bg-[transparent] "
             />
           </label>
-          <Link to="/login">
-            <FiLogIn  className="text-3xl text-yellow-300"/>
-          </Link>
-            {/* <FiLogOut className="text-xl text-yellow-300"/> */}
+         
           <ul
             className={`${
               open ? "block" : "hidden"
@@ -167,6 +146,7 @@ const Navbar = () => {
             {navItems}
           </ul>
         </div>
+        
       </div>
     </div>
   );

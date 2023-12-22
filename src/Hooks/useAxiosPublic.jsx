@@ -2,7 +2,7 @@ import axios from "axios";
 
 // import PropTypes from 'prop-types';
 const axiosPublic = axios.create({
-    baseURL: `http://localhost:5000`
+    baseURL: `https://tash-manager-server.vercel.app`
 })
 const useAxiosPublic = () => {
     return axiosPublic;
