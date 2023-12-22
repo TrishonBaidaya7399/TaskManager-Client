@@ -50,10 +50,10 @@ const task = useLoaderData();
       <Helmet>
         <title>{`TaskManager | Update Task`}</title>
       </Helmet>
-      <button className="mb-2 bg-yellow-400 px-4 py-1 rounded-md font-semibold" onClick={()=>window.history.back()}>
+      <button className="my-2 bg-yellow-400 px-4 py-1 rounded-md font-semibold" onClick={()=>window.history.back()}>
       Go Back
     </button>
-      <div className="bg-black bg-opacity-50 rounded-lg p-8 ">
+      <div className="bg-black bg-opacity-50 rounded-lg p-2 lg:p-8 ">
         <h1 className="text-3xl font-bold text-yellow-400 w-fit mx-auto px-8 pb-2 border-b-2 border-yellow-400">
           Update Task
         </h1>
@@ -67,10 +67,10 @@ const task = useLoaderData();
                 type="text"
                 placeholder="Title"
                 defaultValue={task.title}
-                className="h-12 rounded-lg px-4 border-2 border-yellow-400 font-semibold text-xl text-gray-400 w-full"
+                className="h-12 rounded-lg px-4 border-2 border-yellow-400 font-semibold text-md text-gray-400 w-full"
               />
             </div>
-            <div className="flex gap-4">
+            <div className="flex gap-2 lg:gap-4">
               <input
                 id="deadline"
                 name="deadline"
@@ -78,14 +78,14 @@ const task = useLoaderData();
                 type="date"
                 placeholder="Set Deadline"
                 defaultValue={task.deadline}
-                className="h-12 rounded-lg px-4 border-2 border-yellow-400 font-semibold text-xl text-gray-400 w-full"
+                className="h-12 rounded-lg px-4 border-2 border-yellow-400 font-semibold text-sm text-gray-400 w-full"
               />
               <select
                 id="priority"
                 name="priority"
                 defaultValue={task.priority}
                 {...register("priority", { required: true })}
-                className="h-12 rounded-lg px-4 border-2 border-yellow-400 font-semibold text-xl text-gray-400 w-full"
+                className="h-12 rounded-lg px-4 border-2 border-yellow-400 font-semibold text-sm text-gray-400 w-full"
               >
                 <option
                   className="text-gray-400 font-semibold"
@@ -103,7 +103,7 @@ const task = useLoaderData();
                 name="state"
                 defaultValue={task.state}
                 {...register("state", { required: true })}
-                className="h-12 rounded-lg px-4 border-2 border-yellow-400 font-semibold text-xl text-gray-400 w-full"
+                className="h-12 rounded-lg px-4 border-2 border-yellow-400 font-semibold text-sm text-gray-400 w-full"
               >
                 <option
                   className="text-gray-400 font-semibold"
@@ -127,7 +127,7 @@ const task = useLoaderData();
             <input
               type="submit"
               value="Update"
-              className="btn bg-green-500 px-12 text-xl font-semibold text-black w-fit border-none mt-2"
+              className="btn bg-green-500 px-12 text-md font-semibold text-black w-fit border-none mt-2"
             />
           </div>
         </form>
