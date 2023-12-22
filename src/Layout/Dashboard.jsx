@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 import { IoHome } from "react-icons/io5";
-import { IoMdMenu } from "react-icons/io";
+// import { IoMdMenu } from "react-icons/io";
 
 
 const Dashboard = () => {
@@ -125,7 +125,7 @@ const Dashboard = () => {
               </div>
             </div>
             {/* Page content here */}
-            <div className="w-[100vw] h-[100vh] pb-12 overflow-y-auto px-12">
+            <div className="w-[100vw] h-[100vh] pb-12 overflow-y-auto px-4 md:px-12">
               <Outlet />
             </div>
           </div>
@@ -135,7 +135,7 @@ const Dashboard = () => {
               aria-label="close sidebar"
               className="drawer-overlay"
             ></label>
-            <ul className="menu p-4 w-80 min-h-full bg-black bg-opacity-70 text-yellow-400">
+            <ul className="menu p-4 w-[200px] lg:w-[300px] min-h-full bg-black bg-opacity-70 text-yellow-400">
               {/* Sidebar content here */}
               {navItems}
               <div className="ml-2 pt-4 mt-12 border-t-2 border-yellow-400 w-full">

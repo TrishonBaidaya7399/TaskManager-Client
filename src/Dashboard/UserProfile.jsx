@@ -5,9 +5,9 @@ const UserProfile = () => {
   const [userInfo] = useUserInfo();
 
   return (
-    <div className="my-6 mx-auto h-fit w-fit px-12 bg-black bg-opacity-70 rounded-lg">
+    <div className="my-6 mx-auto h-fit w-fit pb-4 lg:pb-0 px-4 md:px-12 bg-black bg-opacity-70 rounded-lg">
       <h1 className="text-3xl font-semibold text-left text-yellow-400 pt-4 text-center">User Profile</h1>
-      <div className="p-12 flex gap-6  justify-center">
+      <div className="p-4 lg:p-12 flex flex-col md:flex-row gap-6  justify-center">
         <div>
         <div className="flex justify-center">
             {userInfo?.photo ? (
@@ -17,7 +17,7 @@ const UserProfile = () => {
             )}
           </div>
         </div>
-        <div className="profileCard bg-white border-[4px] border-yellow-400 rounded-lg p-6 w-[330px]">
+        <div className="profileCard bg-white border-[4px] border-yellow-400 rounded-lg p-6 md:w-[330px]">
           
           <div className="flex flex-col text-left gap-1 mt-4">
             <h1 className="text-xl"><span className="font-semibold text-xl">User Name:</span> {userInfo.name}</h1>

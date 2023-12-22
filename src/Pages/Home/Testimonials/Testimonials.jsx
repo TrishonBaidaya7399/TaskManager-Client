@@ -56,7 +56,7 @@ const Testimonials = () => {
   };
 
   return (
-    <div  className="px-[90px] py-12 bg-gradient-to-r from-[#f72585] via-[#7209b7] to-[#560bad]">
+    <div  className="md:px-[90px] py-12 bg-gradient-to-r from-[#f72585] via-[#7209b7] to-[#560bad]">
       <div className="text-center md:w-1/2 mx-auto">
         <p className="text-xl text-yellow-400 font-bold pb-1">whom this can be of benefit</p>
         <h1 className="text-3xl lg:text-[45px] text-yellow-400 font-bold">Different Types of Users</h1>
@@ -65,7 +65,7 @@ const Testimonials = () => {
         </p>
       </div>
       <div data-aos="fade-up" data-aos-easing="ease-out-cubic" data-aos-duration="2000">
-        <Slider className="my-12 px-8" {...settings}>
+        <Slider className="my-4 md:my-12 px-8" {...settings}>
           <div className="z-10 h-[400px] lg:h-[300px] bg-black bg-opacity-50 card border-2 border-yellow-400 rounded-lg p-4 lg:p-12 space-y-4 mx-3 max-w-[90%]">
             <div className="flex justify-between items-center">
               <div className="flex flex-col lg:flex-row gap-3 items-center">

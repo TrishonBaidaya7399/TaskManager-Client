@@ -47,8 +47,8 @@ const CreateNewTask = () => {
       <Helmet>
         <title>{`TaskManager | Add Note`}</title>
       </Helmet>
-      <div className="bg-black bg-opacity-50 rounded-lg p-8 ">
-        <h1 className="text-3xl font-bold text-yellow-400 w-fit mx-auto px-8 pb-2 border-b-2 border-yellow-400">
+      <div className="bg-black bg-opacity-50 rounded-lg p-2 md:p-8 ">
+        <h1 className="text-3xl text-center font-bold text-yellow-400 w-fit mx-auto px-8 pb-2 border-b-2 border-yellow-400">
           Create a New Task
         </h1>
         <form onSubmit={handleSubmit(onSubmit)}>

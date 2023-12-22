@@ -37,9 +37,9 @@ const Card = ({ task }) => {
 
   return (
     <div>
-        <div className="bg-gray-300 cursor-pointer rounded-lg p-4 flex flex-col gap-2 h-[300px] border-[4px] border-yellow-400">
+        <div className="bg-gray-300 cursor-pointer rounded-lg p-4 flex flex-col gap-2 h-[350px] md:h-[300px] border-[4px] border-yellow-400">
       <Link to={`/dashboard/toDoList/taskDetails/${task._id}`}>
-          <div className="flex bg-black rounded-md bg-opacity-70 text-xs">
+          <div className="flex flex-col md:flex-row items-center bg-black rounded-md bg-opacity-70 text-xs">
             <span className="font-semibold flex items-center text-white px-2">Priority:
           <p
             className={`w-fit px-2  ${
